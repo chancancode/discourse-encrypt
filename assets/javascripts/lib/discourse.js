@@ -211,6 +211,34 @@ export function putTopicTitle(topicId, title) {
   topicTitles[topicId] = new TopicTitle(topicId, title);
 }
 
+class Zomg {
+  getTopicTitle(topicId) {
+    const title = topicTitles[topicId];
+    if (!title) {
+      return Promise.reject();
+    }
+    return title.promise;
+  }
+
+  syncGetTopicTitle(topicId) {
+    const title = topicTitles[topicId];
+    if (!title) {
+      return null;
+    }
+    return title.result;
+  }
+
+  waitForPendingTitles() {
+    return Promise.all(
+      Object.values(topicTitles)
+        .filter((t) => !t.result)
+        .map((t) => t.promise)
+    );
+  }
+}
+
+export const __ZOMG__ = new Zomg();
+
 /**
  * Gets a topic title from storage.
  *
@@ -218,12 +246,8 @@ export function putTopicTitle(topicId, title) {
  *
  * @return {Promise<String>}
  */
-export function getTopicTitle(topicId) {
-  const title = topicTitles[topicId];
-  if (!title) {
-    return Promise.reject();
-  }
-  return title.promise;
+export function getTopicTitle(...args) {
+  return __ZOMG__.getTopicTitle(...args);
 }
 
 /**
@@ -233,12 +257,8 @@ export function getTopicTitle(topicId) {
  *
  * @return {String|null}
  */
-export function syncGetTopicTitle(topicId) {
-  const title = topicTitles[topicId];
-  if (!title) {
-    return null;
-  }
-  return title.result;
+export function syncGetTopicTitle(...args) {
+  return __ZOMG__.syncGetTopicTitle(...args);
 }
 
 /**
@@ -258,11 +278,7 @@ export function hasTopicTitle(topicId) {
  * @return {Promise}
  */
 export function waitForPendingTitles() {
-  return Promise.all(
-    Object.values(topicTitles)
-      .filter((t) => !t.result)
-      .map((t) => t.promise)
-  );
+  return __ZOMG__.waitForPendingTitles();
 }
 
 /*

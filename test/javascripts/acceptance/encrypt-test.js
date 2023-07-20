@@ -6,10 +6,11 @@ import {
   loadDbIdentity,
   saveDbIdentity,
 } from "discourse/plugins/discourse-encrypt/lib/database";
-import EncryptLibDiscourse, {
+import {
   ENCRYPT_ACTIVE,
   ENCRYPT_DISABLED,
   ENCRYPT_ENABLED,
+  __ZOMG__,
   getEncryptionStatus,
   getIdentity,
   resetEncrypt,
@@ -869,13 +870,13 @@ acceptance("Encrypt - active", function (needs) {
       },
     ]);
 
-    const stub = sinon.stub(EncryptLibDiscourse, "syncGetTopicTitle");
+    const stub = sinon.stub(__ZOMG__, "syncGetTopicTitle");
     stub.returns("Top Secret :male_detective:");
 
-    const stub2 = sinon.stub(EncryptLibDiscourse, "getTopicTitle");
+    const stub2 = sinon.stub(__ZOMG__, "getTopicTitle");
     stub2.returns(Promise.resolve("Top Secret :male_detective:"));
 
-    const stub3 = sinon.stub(EncryptLibDiscourse, "waitForPendingTitles");
+    const stub3 = sinon.stub(__ZOMG__, "waitForPendingTitles");
     stub3.returns(Promise.resolve());
 
     await visit("/");
@@ -931,13 +932,13 @@ acceptance("Encrypt - active", function (needs) {
       },
     ]);
 
-    const stub = sinon.stub(EncryptLibDiscourse, "syncGetTopicTitle");
+    const stub = sinon.stub(__ZOMG__, "syncGetTopicTitle");
     stub.returns(title);
 
-    const stub2 = sinon.stub(EncryptLibDiscourse, "getTopicTitle");
+    const stub2 = sinon.stub(__ZOMG__, "getTopicTitle");
     stub2.returns(Promise.resolve(title));
 
-    const stub3 = sinon.stub(EncryptLibDiscourse, "waitForPendingTitles");
+    const stub3 = sinon.stub(__ZOMG__, "waitForPendingTitles");
     stub3.returns(Promise.resolve());
 
     await visit("/");
@@ -1016,13 +1017,13 @@ acceptance("Encrypt - active", function (needs) {
       },
     ]);
 
-    const stub = sinon.stub(EncryptLibDiscourse, "syncGetTopicTitle");
+    const stub = sinon.stub(__ZOMG__, "syncGetTopicTitle");
     stub.returns(title);
 
-    const stub2 = sinon.stub(EncryptLibDiscourse, "getTopicTitle");
+    const stub2 = sinon.stub(__ZOMG__, "getTopicTitle");
     stub2.returns(Promise.resolve(title));
 
-    const stub3 = sinon.stub(EncryptLibDiscourse, "waitForPendingTitles");
+    const stub3 = sinon.stub(__ZOMG__, "waitForPendingTitles");
     stub3.returns(Promise.resolve());
 
     await visit("/");
@@ -1118,13 +1119,13 @@ acceptance("Encrypt - active", function (needs) {
       },
     ]);
 
-    const stub = sinon.stub(EncryptLibDiscourse, "syncGetTopicTitle");
+    const stub = sinon.stub(__ZOMG__, "syncGetTopicTitle");
     stub.returns(title);
 
-    const stub2 = sinon.stub(EncryptLibDiscourse, "getTopicTitle");
+    const stub2 = sinon.stub(__ZOMG__, "getTopicTitle");
     stub2.returns(Promise.resolve(title));
 
-    const stub3 = sinon.stub(EncryptLibDiscourse, "waitForPendingTitles");
+    const stub3 = sinon.stub(__ZOMG__, "waitForPendingTitles");
     stub3.returns(Promise.resolve());
 
     await visit("/");
